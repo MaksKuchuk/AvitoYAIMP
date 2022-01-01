@@ -1,0 +1,59 @@
+﻿using Dapper;
+using System.Data;
+using System.Data.SqlClient;
+using System.Net;
+using System.Net.Sockets;
+using System.Text;
+using Newtonsoft.Json;
+
+namespace Scedule
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Started");
+            const string ip = "138.201.107.88";
+            const int port = 1234;
+            var tcpEndPoint = new IPEndPoint(IPAddress.Parse(ip), port);
+            var tcpSocket=new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+
+            tcpSocket.Bind(tcpEndPoint);
+            tcpSocket.Listen(10);
+
+            while(true)
+            {
+                var listener=tcpSocket.Accept();
+                var buf = new byte[512];
+                int size = 0;
+                var data=new StringBuilder();
+                do
+                {
+                    size = listener.Receive(buf);
+                    data.Append(Encoding.UTF8.GetString(buf, 0, size));
+                }
+                while (listener.Available > 0);
+
+                var req = JsonConvert.DeserializeObject<Request>(data.ToString());
+                var response = new StringBuilder();
+                if (req.type == "getscedule")
+                {
+                    response = DataAccess.GetScedule(req.body);
+                }
+                else if(req.type == "addscedule")
+                {
+                    response = DataAccess.AddRowToScedule(req.body);
+                }
+                else if (req.type == "login")
+                {
+                    response = DataAccess.GetProfile(req.body);
+                }
+                listener.Send(Encoding.UTF8.GetBytes(response.ToString()));
+               
+                listener.Shutdown(SocketShutdown.Both);
+                listener.Close();
+            }
+
+        }
+    }
+}
