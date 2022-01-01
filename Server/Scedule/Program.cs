@@ -13,6 +13,7 @@ namespace Scedule
         static void Main(string[] args)
         {
             Console.WriteLine("Started");
+            AppDomain.CurrentDomain.SetData("APP_CONFIG_FILE", "App.config");//Reallocating the config file
             const string ip = "138.201.107.88";
             const int port = 1234;
             var tcpEndPoint = new IPEndPoint(IPAddress.Parse(ip), port);

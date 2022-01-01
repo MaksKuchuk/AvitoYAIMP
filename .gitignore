@@ -35,3 +35,4 @@ App.config
 *.user
 *.userosscache
 *.sln.docstates
+Properties/

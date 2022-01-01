@@ -12,11 +12,10 @@ namespace Scedule
 {
     public static class DataAccess
     {
-        const string ConnStr = "YOUR CONNECTION STRING GOES HERE";
         public static StringBuilder GetScedule(string Request)
         {
             List<Scedule> data;
-            using (IDbConnection connection = new SqlConnection(ConnStr)) 
+            using (IDbConnection connection = new SqlConnection(Helper.CnnVal("TestDB"))) 
             {
                 string query = Request;
                 data = connection.Query<Scedule>(query).ToList();
@@ -26,7 +25,7 @@ namespace Scedule
         }
         public static StringBuilder AddRowToScedule(string Request)
         {
-            using (IDbConnection connection = new SqlConnection(ConnStr))
+            using (IDbConnection connection = new SqlConnection(Helper.CnnVal("TestDB")))
             {
                 string query = Request;
                 connection.Execute(query);
@@ -36,7 +35,7 @@ namespace Scedule
         public static StringBuilder GetProfile(string Request)
         {
             List<Profile> data;
-            using (IDbConnection connection = new SqlConnection(ConnStr))
+            using (IDbConnection connection = new SqlConnection(Helper.CnnVal("TestDB")))
             {
                 string query = Request;
                 data = connection.Query<Profile>(query).ToList();
