@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/mainBGC"
+    tools:context=".MainActivity">
+
+    <EditText
+        android:id="@+id/EmailEdit"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="40dp"
+        android:background="@color/passEmailEdit"
+        android:gravity="center"
+        android:hint="@string/hintLogin"
+        android:inputType="textEmailAddress"
+        android:textColor="@color/textPassEmailEdit"
+        android:textColorHint="@color/textHintPassEmailEdit"
+        android:textSize="20sp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:autofillHints="Login" />
+
+    <EditText
+        android:id="@+id/PasswordEdit"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="40dp"
+        android:background="@color/passEmailEdit"
+        android:gravity="center"
+        android:hint="@string/hintPassword"
+        android:inputType="textPassword"
+        android:textColor="@color/textPassEmailEdit"
+        android:textColorHint="@color/textHintPassEmailEdit"
+        android:textSize="20sp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/EmailEdit"
+        android:autofillHints="Password" />
+
+    <LinearLayout
+        android:id="@+id/ButtonsMap"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginEnd="15dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/PasswordEdit"
+        >
+
+        <Button
+            android:id="@+id/enterButton"
+            android:layout_height="60dp"
+            android:layout_width="0dp"
+            android:layout_marginEnd="10dp"
+            android:layout_weight="0.3"
+            android:text="@string/enterButton"
+            android:textStyle="normal"
+            style="?android:attr/borderlessButtonStyle"
+            android:background="@color/enterButtonBGC"
+            />
+
+        <Button
+            android:id="@+id/restorePasswordButton"
+            android:layout_height="60dp"
+            android:layout_width="0dp"
+            android:layout_marginStart="10dp"
+            android:layout_weight="0.6"
+            android:text="@string/restorePasswordButton"
+            android:textStyle="normal"
+            style="?android:attr/borderlessButtonStyle"
+            android:background="@color/restorePasswordButtonBGC"
+            />
+
+    </LinearLayout>
+
+    <CheckBox
+        android:id="@+id/checkBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:text="@string/rememberPassword"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ButtonsMap"
+        android:layout_marginTop="15dp"
+        />
+
+    <TextView
+        android:id="@+id/infoPlate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/infoString"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:background="@color/infoTextDownBGC"
+        android:textSize="15sp"
+        android:textColor="@color/infoTextColor"
+        android:padding="8dp"
+        />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">DVFU Yaimp</string>
+    <string name="infoString">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse eveniet exercitationem nemo nesciunt quae, vero!</string>
+    <string name="hintLogin">Login</string>
+    <string name="hintPassword">Password</string>
+    <string name="enterButton">Enter</string>
+    <string name="restorePasswordButton">Restore password</string>
+    <string name="rememberPassword">Remember the password</string>
+
+
+</resources>

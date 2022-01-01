@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainScreen"
+    android:background="@color/mainBGC">
+
+    <HorizontalScrollView
+        android:id="@+id/daysScroll"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@color/dayScrollBGC">
+        <LinearLayout
+            android:id="@+id/daysScrollLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"/>
+    </HorizontalScrollView>
+
+    <ScrollView
+        android:id="@+id/subjectScroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="70dp"
+        android:layout_marginBottom="70dp"
+        android:background="@color/subjectScrollBGC"
+        app:layout_constraintBottom_toTopOf="@id/DownSelection"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/daysScroll">
+
+        <LinearLayout
+            android:id="@+id/subjectScrollLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/DownSelection"
+        android:padding="10dp"
+        android:layout_height="70dp"
+        android:layout_width="match_parent"
+        android:background="@color/DownSelectionBGC"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Button
+            android:id="@+id/settings"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            style="?android:attr/borderlessButtonStyle"
+            android:background="@color/DownSelectionButtonsBGC"
+            android:layout_weight="1"
+            android:text="icon:setting"/>
+
+        <Button
+            android:id="@+id/calendar"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            style="?android:attr/borderlessButtonStyle"
+            android:background="@color/DownSelectionButtonsBGC"
+            android:layout_weight="1"
+            android:text="icon:calend"/>
+
+        <Button
+            android:id="@+id/LC"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            style="?android:attr/borderlessButtonStyle"
+            android:background="@color/DownSelectionButtonsBGC"
+            android:layout_weight="1"
+            android:text="icon:LC"/>
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
