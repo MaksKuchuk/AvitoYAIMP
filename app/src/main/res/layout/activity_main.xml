@@ -91,11 +91,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:minHeight="48dp"
         android:text="@string/rememberPassword"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ButtonsMap"
-        android:layout_marginTop="15dp"
-        />
+        app:layout_constraintTop_toBottomOf="@id/ButtonsMap" />
 
     <TextView
         android:id="@+id/infoPlate"
