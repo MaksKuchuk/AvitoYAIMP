@@ -9,6 +9,6 @@ namespace Schedule
     public class Request
     {
         public string type { get; set; }
-        public string body {  get; set; }
+        public string body { get; set; }
     }
 }

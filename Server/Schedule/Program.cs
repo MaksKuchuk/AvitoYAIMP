@@ -14,54 +14,60 @@ namespace Schedule
         {
             Console.WriteLine("Started");
             AppDomain.CurrentDomain.SetData("APP_CONFIG_FILE", "App.config");//Reallocating the config file
+
             const string ip = "138.201.107.88";
             const int port = 1234;
             var tcpEndPoint = new IPEndPoint(IPAddress.Parse(ip), port);
-            var tcpSocket=new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            var tcpSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 
             tcpSocket.Bind(tcpEndPoint);
             tcpSocket.Listen(10);
 
-            while(true)
+            while (true)
             {
-                var listener=tcpSocket.Accept();
+                var listener = tcpSocket.Accept();
+                Console.WriteLine("Client connected");
+
                 var buf = new byte[512];
                 int size = 0;
-                var data=new StringBuilder();
+                var data = new StringBuilder();
                 do
                 {
                     size = listener.Receive(buf);
                     data.Append(Encoding.UTF8.GetString(buf, 0, size));
                 }
                 while (listener.Available > 0);
+                Console.WriteLine($"Recieved {data.ToString()}");
 
-                var req = JsonConvert.DeserializeObject<Request>(data.ToString());
-                var response = new StringBuilder();
+                string response = "default_response";
                 try
                 {
-                    if (req.type == "getscedule")
+                    var req = JsonConvert.DeserializeObject<Request>(data.ToString());
+
+                    if (req.type == "getschedule")
                     {
                         response = DataAccess.GetSchedule(req.body);
                     }
-                    else if (req.type == "addscedule")
+                    else if (req.type == "addrow")
                     {
-                        response = DataAccess.AddRowToSchedule(req.body);
+                        response = DataAccess.AddRow(req.body);
                     }
-                    else if (req.type == "login")
+                    else if (req.type == "getprofiles")
                     {
-                        response = DataAccess.GetProfile(req.body);
+                        response = DataAccess.GetProfiles(req.body);
                     }
                 }
                 catch
                 {
-                    response = new StringBuilder("hueva:(");
+                    response = "bad request";
                 }
-                listener.Send(Encoding.UTF8.GetBytes(response.ToString()));
-               
+
+                listener.Send(Encoding.UTF8.GetBytes(response));
+                Console.WriteLine($"Sent {response.ToString()}");
                 listener.Shutdown(SocketShutdown.Both);
                 listener.Close();
+                Console.WriteLine("Client disconnected");
             }
-
         }
     }
 }
