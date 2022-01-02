@@ -12,7 +12,6 @@ namespace Schedule
     {
         static void Main(string[] args)
         {
-            //TODO: Wrong input protection
             Console.WriteLine("Started");
             AppDomain.CurrentDomain.SetData("APP_CONFIG_FILE", "App.config");//Reallocating the config file
             const string ip = "138.201.107.88";
@@ -38,17 +37,24 @@ namespace Schedule
 
                 var req = JsonConvert.DeserializeObject<Request>(data.ToString());
                 var response = new StringBuilder();
-                if (req.type == "getscedule")
+                try
                 {
-                    response = DataAccess.GetSchedule(req.body);
+                    if (req.type == "getscedule")
+                    {
+                        response = DataAccess.GetSchedule(req.body);
+                    }
+                    else if (req.type == "addscedule")
+                    {
+                        response = DataAccess.AddRowToSchedule(req.body);
+                    }
+                    else if (req.type == "login")
+                    {
+                        response = DataAccess.GetProfile(req.body);
+                    }
                 }
-                else if(req.type == "addscedule")
+                catch
                 {
-                    response = DataAccess.AddRowToSchedule(req.body);
-                }
-                else if (req.type == "login")
-                {
-                    response = DataAccess.GetProfile(req.body);
+                    response = new StringBuilder("hueva:(");
                 }
                 listener.Send(Encoding.UTF8.GetBytes(response.ToString()));
                
