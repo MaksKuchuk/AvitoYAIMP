@@ -39,5 +39,4 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(),"Restore password", Toast.LENGTH_SHORT).show();
     }
 
-
 }
