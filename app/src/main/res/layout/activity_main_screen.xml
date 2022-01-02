@@ -27,8 +27,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@color/dayScrollBTN"
+            android:background="@drawable/round_button"
             style="?android:attr/buttonBarButtonStyle"
+            android:text="@string/monday"
+            android:textColor="@color/white"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"/>
 
@@ -37,8 +39,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@color/dayScrollBTN"
+            android:background="@drawable/round_button"
             style="?android:attr/buttonBarButtonStyle"
+            android:text="@string/tuesday"
+            android:textColor="@color/white"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"/>
 
@@ -47,8 +51,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@color/dayScrollBTN"
+            android:background="@drawable/round_button"
             style="?android:attr/buttonBarButtonStyle"
+            android:text="@string/wednesday"
+            android:textColor="@color/white"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"/>
 
@@ -57,8 +63,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@color/dayScrollBTN"
+            android:background="@drawable/round_button"
             style="?android:attr/buttonBarButtonStyle"
+            android:text="@string/thursday"
+            android:textColor="@color/white"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"/>
 
@@ -67,8 +75,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@color/dayScrollBTN"
+            android:background="@drawable/round_button"
             style="?android:attr/buttonBarButtonStyle"
+            android:text="@string/friday"
+            android:textColor="@color/white"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"/>
 
@@ -77,8 +87,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@color/dayScrollBTN"
+            android:background="@drawable/round_button"
             style="?android:attr/buttonBarButtonStyle"
+            android:text="@string/saturday"
+            android:textColor="@color/white"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"/>
     </LinearLayout>
@@ -89,7 +101,7 @@
         android:layout_height="match_parent"
         android:layout_marginTop="70dp"
         android:layout_marginBottom="70dp"
-        android:background="@color/subjectScrollBGC"
+        android:background="@color/white"
         android:rotationX="0"
         app:layout_constraintBottom_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
