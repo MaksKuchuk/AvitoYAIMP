@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Scedule
+namespace Schedule
 {
-    public class Scedule
+    public class Schedule
     {
-        public Scedule(string lesson, string teacher, int room, string description, DateTime time)
+        public Schedule(string lesson, string teacher, int room, string description, DateTime time)
         {
             Lesson = lesson;
             Teacher = teacher;

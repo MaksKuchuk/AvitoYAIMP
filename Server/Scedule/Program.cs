@@ -6,12 +6,13 @@ using System.Net.Sockets;
 using System.Text;
 using Newtonsoft.Json;
 
-namespace Scedule
+namespace Schedule
 {
     class Program
     {
         static void Main(string[] args)
         {
+            //TODO: Wrong input protection
             Console.WriteLine("Started");
             AppDomain.CurrentDomain.SetData("APP_CONFIG_FILE", "App.config");//Reallocating the config file
             const string ip = "138.201.107.88";
@@ -39,11 +40,11 @@ namespace Scedule
                 var response = new StringBuilder();
                 if (req.type == "getscedule")
                 {
-                    response = DataAccess.GetScedule(req.body);
+                    response = DataAccess.GetSchedule(req.body);
                 }
                 else if(req.type == "addscedule")
                 {
-                    response = DataAccess.AddRowToScedule(req.body);
+                    response = DataAccess.AddRowToSchedule(req.body);
                 }
                 else if (req.type == "login")
                 {

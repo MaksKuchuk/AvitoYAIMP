@@ -5,7 +5,7 @@ using System.Text;
 using System.Configuration;
 using System.Threading.Tasks;
 
-namespace Scedule
+namespace Schedule
 {
     public static class Helper
     {

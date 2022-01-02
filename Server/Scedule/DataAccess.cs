@@ -8,22 +8,22 @@ using System.Threading.Tasks;
 using Dapper;
 using Newtonsoft.Json;
 
-namespace Scedule
+namespace Schedule
 {
     public static class DataAccess
     {
-        public static StringBuilder GetScedule(string Request)
+        public static StringBuilder GetSchedule(string Request)
         {
-            List<Scedule> data;
+            List<Schedule> data;
             using (IDbConnection connection = new SqlConnection(Helper.CnnVal("TestDB"))) 
             {
                 string query = Request;
-                data = connection.Query<Scedule>(query).ToList();
+                data = connection.Query<Schedule>(query).ToList();
             }
             string json=JsonConvert.SerializeObject(data);
             return new StringBuilder(json);
         }
-        public static StringBuilder AddRowToScedule(string Request)
+        public static StringBuilder AddRowToSchedule(string Request)
         {
             using (IDbConnection connection = new SqlConnection(Helper.CnnVal("TestDB")))
             {
