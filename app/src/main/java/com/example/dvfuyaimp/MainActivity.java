@@ -63,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void enterBTN(View view){
         String pass = ((EditText)findViewById(R.id.PasswordEdit)).getText().toString().trim();
+        String login = ((EditText)findViewById(R.id.EmailEdit)).getText().toString().trim();
 
         Toast.makeText(getApplicationContext(), Long.toString(hash(pass)), Toast.LENGTH_SHORT).show();
         startActivity(new Intent(this, MainScreen.class));
