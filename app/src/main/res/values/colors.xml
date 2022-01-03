@@ -16,9 +16,9 @@
     <color name="infoTextColor">#817d91</color>
     <color name="enterButtonBGC">#388c5b</color>
     <color name="restorePasswordButtonBGC">#962092</color>
-    <color name="dayScrollBGC">#45cea2</color>
+    <color name="dayScrollBGC">#008055</color>
     <color name="subjectScrollBGC">#3b3e47</color>
-    <color name="DownSelectionBGC">#45cea2</color>
+    <color name="DownSelectionBGC">#008055</color>
     <color name="DownSelectionButtonsBGC">#333d28</color>
     <color name="dayScrollBTN">#4dffc3</color>
 

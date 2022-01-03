@@ -2,7 +2,6 @@ package com.example.dvfuyaimp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -91,7 +90,6 @@ public class MainScreen extends AppCompatActivity {
 
     public void settingBTN(View view){
         Toast.makeText(getApplicationContext(),"Settings", Toast.LENGTH_SHORT).show();
-        startActivity(new Intent(this, SettingsActivity.class));
     }
     public void calendarBTN(View view){
         Toast.makeText(getApplicationContext(),"Calendar", Toast.LENGTH_SHORT).show();
