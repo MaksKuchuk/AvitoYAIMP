@@ -128,30 +128,35 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" >
+        </Space>
+
         <Button
             android:id="@+id/settings"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginEnd="20dp"
+            android:layout_margin="10dp"
             style="?android:attr/borderlessButtonStyle"
             android:background="@drawable/settings_button" />
-
-        <Button
-            android:id="@+id/calendar"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp"
-            style="?android:attr/borderlessButtonStyle"
-            android:background="@drawable/calendar_button"/>
-
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="2" >
+        </Space>
         <Button
             android:id="@+id/LC"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginStart="20dp"
+            android:layout_margin="10dp"
             style="?android:attr/borderlessButtonStyle"
             android:background="@drawable/cabinet_button"/>
-
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" >
+        </Space>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

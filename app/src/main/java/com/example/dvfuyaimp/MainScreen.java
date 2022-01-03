@@ -2,6 +2,8 @@ package com.example.dvfuyaimp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ActivityOptions;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -49,16 +51,11 @@ public class MainScreen extends AppCompatActivity {
                 SatBTN(view);
             }
         });
+
         findViewById(R.id.settings).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 settingBTN(view);
-            }
-        });
-        findViewById(R.id.calendar).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                calendarBTN(view);
             }
         });
         findViewById(R.id.LC).setOnClickListener(new View.OnClickListener() {
@@ -90,11 +87,14 @@ public class MainScreen extends AppCompatActivity {
 
     public void settingBTN(View view){
         Toast.makeText(getApplicationContext(),"Settings", Toast.LENGTH_SHORT).show();
-    }
-    public void calendarBTN(View view){
-        Toast.makeText(getApplicationContext(),"Calendar", Toast.LENGTH_SHORT).show();
+
+        startActivity(new Intent(this, Settings.class));
+        overridePendingTransition(R.anim.anim_main_to_settings_out, R.anim.anim_main_to_settings);
     }
     public void LcBTN(View view){
         Toast.makeText(getApplicationContext(),"LC", Toast.LENGTH_SHORT).show();
+
+        startActivity(new Intent(this, LC.class));
+        overridePendingTransition(R.anim.anim_main_to_lc_out, R.anim.anim_main_to_lc);
     }
 }
