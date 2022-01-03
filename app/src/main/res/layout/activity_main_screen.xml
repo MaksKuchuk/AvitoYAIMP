@@ -24,70 +24,89 @@
 
         <Button
             android:id="@+id/MonBTN"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/round_button"
+            android:layout_width="45dp"
+            android:layout_height="55dp"
+            android:background="@drawable/trans_buttons"
             style="?android:attr/buttonBarButtonStyle"
             android:text="@string/monday"
             android:textColor="@color/white"
             android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"/>
+            android:layout_marginRight="5dp" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
 
         <Button
             android:id="@+id/TueBTN"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/round_button"
+            android:layout_width="45dp"
+            android:layout_height="55dp"
+            android:background="@drawable/trans_buttons"
             style="?android:attr/buttonBarButtonStyle"
             android:text="@string/tuesday"
             android:textColor="@color/white"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"/>
 
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
         <Button
             android:id="@+id/WedBTN"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/round_button"
+            android:layout_width="45dp"
+            android:layout_height="55dp"
+            android:background="@drawable/trans_buttons"
             style="?android:attr/buttonBarButtonStyle"
             android:text="@string/wednesday"
             android:textColor="@color/white"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"/>
 
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
         <Button
             android:id="@+id/ThuBTN"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/round_button"
+            android:layout_width="45dp"
+            android:layout_height="55dp"
+            android:background="@drawable/trans_buttons"
             style="?android:attr/buttonBarButtonStyle"
             android:text="@string/thursday"
             android:textColor="@color/white"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"/>
 
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
         <Button
             android:id="@+id/FriBTN"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/round_button"
+            android:layout_width="45dp"
+            android:layout_height="55dp"
+            android:background="@drawable/trans_buttons"
             style="?android:attr/buttonBarButtonStyle"
             android:text="@string/friday"
             android:textColor="@color/white"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"/>
 
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
         <Button
             android:id="@+id/SatBTN"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/round_button"
+            android:layout_width="45dp"
+            android:layout_height="55dp"
+            android:background="@drawable/trans_buttons"
             style="?android:attr/buttonBarButtonStyle"
             android:text="@string/saturday"
             android:textColor="@color/white"

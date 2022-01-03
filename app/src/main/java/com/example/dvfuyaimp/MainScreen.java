@@ -4,11 +4,18 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ActivityOptions;
 import android.content.Intent;
+import android.graphics.drawable.TransitionDrawable;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 public class MainScreen extends AppCompatActivity {
+
+    final int TransitionWeekButtonsTime = 100;
+
+    View LastWeekBTN;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,25 +71,51 @@ public class MainScreen extends AppCompatActivity {
                 LcBTN(view);
             }
         });
+
+        setStartDay(findViewById(R.id.MonBTN));
     }
 
     public void MonBTN(View view){
-        Toast.makeText(getApplicationContext(),"Monday", Toast.LENGTH_SHORT).show();
+        if (LastWeekBTN != view){
+            ((TransitionDrawable)LastWeekBTN.getBackground()).reverseTransition(TransitionWeekButtonsTime);
+            ((TransitionDrawable)view.getBackground()).startTransition(TransitionWeekButtonsTime);
+            LastWeekBTN = view;
+        }
     }
     public void TueBTN(View view){
-        Toast.makeText(getApplicationContext(),"Tuesday", Toast.LENGTH_SHORT).show();
+        if (LastWeekBTN != view){
+            ((TransitionDrawable)LastWeekBTN.getBackground()).reverseTransition(TransitionWeekButtonsTime);
+            ((TransitionDrawable)view.getBackground()).startTransition(TransitionWeekButtonsTime);
+            LastWeekBTN = view;
+        }
     }
     public void WedBTN(View view){
-        Toast.makeText(getApplicationContext(),"Wednesday", Toast.LENGTH_SHORT).show();
+        if (LastWeekBTN != view){
+            ((TransitionDrawable)LastWeekBTN.getBackground()).reverseTransition(TransitionWeekButtonsTime);
+            ((TransitionDrawable)view.getBackground()).startTransition(TransitionWeekButtonsTime);
+            LastWeekBTN = view;
+        }
     }
     public void ThuBTN(View view){
-        Toast.makeText(getApplicationContext(),"Thursday", Toast.LENGTH_SHORT).show();
+        if (LastWeekBTN != view){
+            ((TransitionDrawable)LastWeekBTN.getBackground()).reverseTransition(TransitionWeekButtonsTime);
+            ((TransitionDrawable)view.getBackground()).startTransition(TransitionWeekButtonsTime);
+            LastWeekBTN = view;
+        }
     }
     public void FriBTN(View view){
-        Toast.makeText(getApplicationContext(),"Friday", Toast.LENGTH_SHORT).show();
+        if (LastWeekBTN != view){
+            ((TransitionDrawable)LastWeekBTN.getBackground()).reverseTransition(TransitionWeekButtonsTime);
+            ((TransitionDrawable)view.getBackground()).startTransition(TransitionWeekButtonsTime);
+            LastWeekBTN = view;
+        }
     }
     public void SatBTN(View view){
-        Toast.makeText(getApplicationContext(),"Saturday", Toast.LENGTH_SHORT).show();
+        if (LastWeekBTN != view){
+            ((TransitionDrawable)LastWeekBTN.getBackground()).reverseTransition(TransitionWeekButtonsTime);
+            ((TransitionDrawable)view.getBackground()).startTransition(TransitionWeekButtonsTime);
+            LastWeekBTN = view;
+        }
     }
 
     public void settingBTN(View view){
@@ -96,5 +129,10 @@ public class MainScreen extends AppCompatActivity {
 
         startActivity(new Intent(this, LC.class));
         overridePendingTransition(R.anim.anim_main_to_lc_out, R.anim.anim_main_to_lc);
+    }
+
+    private void setStartDay(View view){
+        LastWeekBTN = findViewById(R.id.MonBTN);
+        ((TransitionDrawable)view.getBackground()).startTransition(0);
     }
 }
