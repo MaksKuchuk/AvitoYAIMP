@@ -8,7 +8,7 @@ namespace Schedule
 {
     public class Profile
     {
-        public Profile(string login, string password, string firstname, string lastname, string acctype)
+        public Profile(string login,string password,string firstname, string lastname,string acctype)
         {
             Login = login;
             Password = password;
@@ -17,9 +17,9 @@ namespace Schedule
             AccType = acctype;
         }
         public string Login { get; set; }
-        public string Password { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string AccType { get; set; }
+        public string Password {  get; set; }
+        public string FirstName {  get; set; }
+        public string LastName {  get; set; }
+        public string AccType {  get; set; }
     }
 }

@@ -21,5 +21,6 @@ namespace Schedule
         public string Description { get; set; }
         public int Room { get; set; }
         public DateTime Time { get; set; }
+
     }
 }

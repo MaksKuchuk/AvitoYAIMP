@@ -12,33 +12,36 @@ namespace Schedule
 {
     public static class DataAccess
     {
-        public static string GetSchedule(string query)
+        public static StringBuilder GetSchedule(string Request)
         {
             List<Schedule> data;
-            using (IDbConnection connection = new SqlConnection(Helper.CnnVal("TestDB")))
+            using (IDbConnection connection = new SqlConnection(Helper.CnnVal("TestDB"))) 
             {
+                string query = Request;
                 data = connection.Query<Schedule>(query).ToList();
             }
-            string json = JsonConvert.SerializeObject(data);
-            return json;
+            string json=JsonConvert.SerializeObject(data);
+            return new StringBuilder(json);
         }
-        public static string AddRow(string query)
+        public static StringBuilder AddRowToSchedule(string Request)
         {
             using (IDbConnection connection = new SqlConnection(Helper.CnnVal("TestDB")))
             {
+                string query = Request;
                 connection.Execute(query);
             }
-            return "success";
+            return new StringBuilder("success");
         }
-        public static string GetProfiles(string query)
+        public static StringBuilder GetProfile(string Request)
         {
             List<Profile> data;
             using (IDbConnection connection = new SqlConnection(Helper.CnnVal("TestDB")))
             {
+                string query = Request;
                 data = connection.Query<Profile>(query).ToList();
             }
             string json = JsonConvert.SerializeObject(data);
-            return json;
+            return new StringBuilder(json);
         }
     }
 }
