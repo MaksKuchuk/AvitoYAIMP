@@ -7,19 +7,20 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="grey">#808080</color>
 
     <color name="mainBGC">#3b3e47</color>
-    <color name="passEmailEdit">#18171c</color>
+    <color name="passEmailEdit">#ebdcb2</color>
     <color name="textPassEmailEdit">#b6b0d1</color>
     <color name="textHintPassEmailEdit">#7f76a8</color>
     <color name="infoTextDownBGC">#202024</color>
     <color name="infoTextColor">#817d91</color>
     <color name="enterButtonBGC">#388c5b</color>
     <color name="restorePasswordButtonBGC">#962092</color>
-    <color name="dayScrollBGC">#008055</color>
+    <color name="dayScrollBGC">#662e1c</color>
     <color name="subjectScrollBGC">#3b3e47</color>
-    <color name="DownSelectionBGC">#008055</color>
+    <color name="DownSelectionBGC">#af4425</color>
     <color name="DownSelectionButtonsBGC">#333d28</color>
-    <color name="dayScrollBTN">#4dffc3</color>
+    <color name="dayScrollBTN">#af4425</color>
 
 </resources>

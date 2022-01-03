@@ -4,17 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/mainBGC"
+    android:background="@drawable/main_bg"
     tools:context=".MainActivity">
 
     <EditText
         android:id="@+id/EmailEdit"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="40dp"
         android:layout_marginStart="40dp"
         android:layout_marginTop="100dp"
         android:layout_marginEnd="40dp"
-        android:background="@color/passEmailEdit"
+        android:background="@drawable/edit_text"
         android:gravity="center"
         android:hint="@string/hintLogin"
         android:inputType="textEmailAddress"
@@ -25,16 +25,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:autofillHints="Login" />
+        android:autofillHints="Login"/>
 
     <EditText
         android:id="@+id/PasswordEdit"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="40dp"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="40dp"
-        android:background="@color/passEmailEdit"
+        android:background="@drawable/edit_text"
         android:gravity="center"
         android:hint="@string/hintPassword"
         android:inputType="textPassword"
@@ -52,64 +52,52 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="15dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/PasswordEdit"
-        >
+        app:layout_constraintTop_toBottomOf="@id/PasswordEdit">
+
+        <CheckBox
+            android:id="@+id/password_rem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:text="@string/rememberPassword"
+            android:textColor="@color/black" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
 
         <Button
             android:id="@+id/enterButton"
-            android:layout_height="60dp"
-            android:layout_width="0dp"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_marginEnd="10dp"
-            android:layout_weight="0.3"
-            android:text="@string/enterButton"
-            android:textStyle="normal"
-            style="?android:attr/borderlessButtonStyle"
-            android:background="@color/enterButtonBGC"
-            />
-
-        <Button
-            android:id="@+id/restorePasswordButton"
-            android:layout_height="60dp"
-            android:layout_width="0dp"
-            android:layout_marginStart="10dp"
-            android:layout_weight="0.6"
-            android:text="@string/restorePasswordButton"
-            android:textStyle="normal"
-            style="?android:attr/borderlessButtonStyle"
-            android:background="@color/restorePasswordButtonBGC"
-            />
-
+            android:background="@drawable/button_arrow"
+            android:textStyle="normal" />
     </LinearLayout>
 
-    <CheckBox
-        android:id="@+id/checkBox"
+    <Button
+        android:id="@+id/restorePasswordButton"
+        style="?android:attr/borderlessButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="15dp"
-        android:minHeight="48dp"
-        android:text="@string/rememberPassword"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ButtonsMap" />
-
-    <TextView
-        android:id="@+id/infoPlate"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/infoString"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_gravity="center"
+        android:layout_marginBottom="24dp"
+        android:background="#00000000"
+        android:text="@string/restorePasswordButton"
+        android:textColor="@color/black"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toTopOf="@id/EmailEdit"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:background="@color/infoTextDownBGC"
-        android:textSize="15sp"
-        android:textColor="@color/infoTextColor"
-        android:padding="8dp"
-        />
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
