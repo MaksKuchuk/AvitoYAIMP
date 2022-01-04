@@ -26,10 +26,10 @@ public class ServerConnection {
         }
         catch (UnknownHostException e) {
             e.printStackTrace();
-            return "Server Error\n"+ e.getMessage();
+            return "[]"; //"Server Error\n"+ e.getMessage();
         } catch (IOException e) {
             e.printStackTrace();
-            return "IO Error\n"+ e.getMessage();
+            return "[]"; //"IO Error\n"+ e.getMessage();
         }
     }
 }

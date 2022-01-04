@@ -11,14 +11,19 @@ public class DataAccess {
         String query = new Gson().toJson(request);
         return new Gson().fromJson(ServerConnection.Query(query), Schedule[].class);
     }
+    /** Gets full schedule from data base
+     @return Schedule[] if successful or empty Schedule[] otherwise */
     public static Schedule[] GetSchedule() {
         return GetSchedule(new Request("getschedule", "select * from Lessons"));
     }
+    /** Gets schedule from data base by query
+     @return Schedule[] if successful or empty Schedule[] otherwise */
     public static Schedule[] GetSchedule(String query) {
         return GetSchedule(new Request("getschedule", query));
     }
 
-
+    /** Gets profile from data base
+     @return Profile[] if successful or empty Profile[] otherwise */
     public static Profile[] GetProfile(String login, String password) {
         Request request = new Request("getprofiles", "select firstname, lastname, acctype from Profiles where login='" + login + "' and password='" + password + "'");
         String query = new Gson().toJson(request);
@@ -30,20 +35,16 @@ public class DataAccess {
         return profiles;
     }
 
-    public static String GetProfile2(String login, String password) {
-        Request request = new Request("getprofiles", "select firstname, lastname, acctype from Profiles where login='" + login + "' and password='"+password+"'");
-        String query = new Gson().toJson(request);
-        return ServerConnection.Query(query);
-    }
-
-
+    /** Adds Schedule to data base
+     @return String 'successful' or '[]' otherwise */
     public static String AddRowToSchedule(Schedule s) {
         Request request = new Request("addrow", "insert into Lessons (lesson,teacher,room,description,time) values ('"+s.Lesson+"','"+s.Teacher+"','"+ s.Room +"','"+s.Description+"','"+s.Time+"')");
         String query = new Gson().toJson(request);
         return ServerConnection.Query(query);
     }
 
-
+    /** Adds Profile to data base
+     @return String 'successful' or '[]' otherwise */
     public static String AddRowToProfiles(Profile p) {
         Request request = new Request("addrow", "insert into Profiles (login,password,firstname, lastname, acctype) values ('"+p.Login+"','"+p.Password+"','"+p.FirstName+"','"+p.LastName+"','"+p.AccType+"')");
         String query = new Gson().toJson(request);

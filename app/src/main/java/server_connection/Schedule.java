@@ -5,10 +5,10 @@ public class Schedule
     public String Lesson;
     public String Teacher;
     public String Description;
-    public int Room;
+    public String Room;
     public String Time; // LocalDateTime yyyy-MM-ddThh:mm:ss (just letter T)
 
-    public Schedule (String lesson, String teacher, int room, String description, String time)
+    public Schedule (String lesson, String teacher, String room, String description, String time)
     {
         this.Lesson = lesson;
         this.Teacher = teacher;
