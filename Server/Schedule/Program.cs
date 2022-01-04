@@ -39,7 +39,7 @@ namespace Schedule
                 while (listener.Available > 0);
                 Console.WriteLine($"Recieved {data.ToString()}");
 
-                string response = "default_response";
+                string response = "[]";
                 try
                 {
                     var req = JsonConvert.DeserializeObject<Request>(data.ToString());
@@ -59,7 +59,7 @@ namespace Schedule
                 }
                 catch
                 {
-                    response = "bad request";
+                    response = "[]";
                 }
 
                 listener.Send(Encoding.UTF8.GetBytes(response));
