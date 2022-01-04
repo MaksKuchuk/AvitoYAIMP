@@ -8,7 +8,7 @@ namespace Schedule
 {
     public class Schedule
     {
-        public Schedule(string lesson, string teacher, int room, string description, DateTime time)
+        public Schedule(string lesson, string teacher, string room, string description, DateTime time)
         {
             Lesson = lesson;
             Teacher = teacher;
@@ -19,7 +19,7 @@ namespace Schedule
         public string Lesson { get; set; }
         public string Teacher { get; set; }
         public string Description { get; set; }
-        public int Room { get; set; }
+        public string Room { get; set; }
         public DateTime Time { get; set; }
     }
 }
