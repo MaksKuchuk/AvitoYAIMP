@@ -13,6 +13,12 @@
     <string name="thursday">THU</string>
     <string name="friday">FRI</string>
     <string name="saturday">SAT</string>
+    <string name="lesson">Lesson</string>
+    <string name="_15_00">15:00</string>
+    <string name="d820">D820</string>
+    <string name="teacher">Teacher</string>
+    <string name="event">Event</string>
+    <string name="place">Place</string>
 
 
 </resources>
