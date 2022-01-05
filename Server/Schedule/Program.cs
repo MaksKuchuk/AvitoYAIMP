@@ -63,7 +63,7 @@ namespace Schedule
                 }
 
                 listener.Send(Encoding.UTF8.GetBytes(response));
-                Console.WriteLine($"Sent {response.ToString()}");
+                Console.WriteLine($"Sent {response.Length} bytes");
                 listener.Shutdown(SocketShutdown.Both);
                 listener.Close();
                 Console.WriteLine("Client disconnected");
