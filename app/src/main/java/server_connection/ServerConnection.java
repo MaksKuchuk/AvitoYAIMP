@@ -1,6 +1,8 @@
 package server_connection;
 
 import android.os.Build;
+import android.util.Log;
+
 import androidx.annotation.RequiresApi;
 
 import java.nio.charset.StandardCharsets;
@@ -13,23 +15,38 @@ public class ServerConnection {
     private static final int port = 1234;
 
     public static String Query(String query) {
+        Log.d("MyApp", "Query started");
+        int i = 0;
         try (Socket socket = new Socket(host, port)){
             OutputStream output = socket.getOutputStream();
             InputStream input = socket.getInputStream();
             BufferedReader reader = new BufferedReader(new InputStreamReader(input));
 
             output.write(query.getBytes(StandardCharsets.UTF_8));
-            String response = reader.readLine();
+
+            char[] buf = new char[1024*1024];
+            StringBuilder response = new StringBuilder();
+            int len = 0;
+            while ((len = reader.read(buf)) > 0) {
+                response.append(buf, 0, len);
+            }
+
+            Log.d("MyApp", response.toString());
+
+            if (!response.toString().endsWith("]"))
+                response.append("]");
 
             socket.close();
-            return response;
+            return response.toString();
         }
         catch (UnknownHostException e) {
             e.printStackTrace();
-            return "[]"; //"Server Error\n"+ e.getMessage();
+            Log.d("MyApp", i + " Server Error\n"+ e.getMessage());
+            return "[]";
         } catch (IOException e) {
             e.printStackTrace();
-            return "[]"; //"IO Error\n"+ e.getMessage();
+            Log.d("MyApp", i + " IO Error\n"+ e.getMessage());
+            return "[]";
         }
     }
 }

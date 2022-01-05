@@ -25,18 +25,8 @@ public class MainActivity extends AppCompatActivity {
 
         remember = (CheckBox)findViewById(R.id.password_rem);
 
-        findViewById(R.id.enterButton).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                enterBTN(view);
-            }
-        });
-        findViewById(R.id.restorePasswordButton).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                restorePasswordBTN(view);
-            }
-        });
+        findViewById(R.id.enterButton).setOnClickListener(this::enterBTN);
+        findViewById(R.id.restorePasswordButton).setOnClickListener(this::restorePasswordBTN);
         remember.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -1,128 +1,73 @@
 package com.example.dvfuyaimp;
 
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.RequiresApi;
+import android.annotation.SuppressLint;
 
-import android.app.ActivityOptions;
+import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.drawable.TransitionDrawable;
+import android.os.Build;
 import android.os.Bundle;
+
 import android.view.LayoutInflater;
 import android.view.View;
+
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import server_connection.*;
+
+import java.time.DayOfWeek;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
+
+@RequiresApi(api = Build.VERSION_CODES.O)
 public class MainScreen extends AppCompatActivity {
 
     final int TransitionWeekButtonsTime = 100;
 
     View LastWeekBTN;
+    LocalDateTime startOfWeek;
+    DateTimeFormatter fServ = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
+    DateTimeFormatter fDate = DateTimeFormatter.ofPattern("HH:mm");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_screen);
 
-        findViewById(R.id.MonBTN).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                MonBTN(view);
-            }
-        });
-        findViewById(R.id.TueBTN).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                TueBTN(view);
-            }
-        });
-        findViewById(R.id.WedBTN).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                WedBTN(view);
-            }
-        });
-        findViewById(R.id.ThuBTN).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ThuBTN(view);
-            }
-        });
-        findViewById(R.id.FriBTN).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FriBTN(view);
-            }
-        });
-        findViewById(R.id.SatBTN).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                SatBTN(view);
-            }
-        });
+        findViewById(R.id.MonBTN).setOnClickListener(this::DayBTN);
+        findViewById(R.id.TueBTN).setOnClickListener(this::DayBTN);
+        findViewById(R.id.WedBTN).setOnClickListener(this::DayBTN);
+        findViewById(R.id.ThuBTN).setOnClickListener(this::DayBTN);
+        findViewById(R.id.FriBTN).setOnClickListener(this::DayBTN);
+        findViewById(R.id.SatBTN).setOnClickListener(this::DayBTN);
 
-        findViewById(R.id.settings).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                settingBTN(view);
-            }
-        });
-        findViewById(R.id.LC).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                LcBTN(view);
-            }
-        });
+        findViewById(R.id.settings).setOnClickListener(this::settingBTN);
+        findViewById(R.id.LC).setOnClickListener(this::LcBTN);
 
-        setStartDay(findViewById(R.id.MonBTN));
-        addLesson("YAIMP", "Sush", "15:10", "D820");
-        addLesson("VAISD", "Klenin", "11:50", "G464");
-        addEvent("contest", "15:10", "Building A");
-        deleteAllViewInScrollView();
+        setStartDay();
     }
 
-    public void MonBTN(View view){
+    public void DayBTN(View view){
         if (LastWeekBTN != view){
             ((TransitionDrawable)LastWeekBTN.getBackground()).reverseTransition(TransitionWeekButtonsTime);
             ((TransitionDrawable)view.getBackground()).startTransition(TransitionWeekButtonsTime);
             LastWeekBTN = view;
-        }
+            deleteAllViewInScrollView();
 
-    }
-    public void TueBTN(View view){
-        if (LastWeekBTN != view){
-            ((TransitionDrawable)LastWeekBTN.getBackground()).reverseTransition(TransitionWeekButtonsTime);
-            ((TransitionDrawable)view.getBackground()).startTransition(TransitionWeekButtonsTime);
-            LastWeekBTN = view;
-        }
-    }
-    public void WedBTN(View view){
-        if (LastWeekBTN != view){
-            ((TransitionDrawable)LastWeekBTN.getBackground()).reverseTransition(TransitionWeekButtonsTime);
-            ((TransitionDrawable)view.getBackground()).startTransition(TransitionWeekButtonsTime);
-            LastWeekBTN = view;
-        }
-    }
-    public void ThuBTN(View view){
-        if (LastWeekBTN != view){
-            ((TransitionDrawable)LastWeekBTN.getBackground()).reverseTransition(TransitionWeekButtonsTime);
-            ((TransitionDrawable)view.getBackground()).startTransition(TransitionWeekButtonsTime);
-            LastWeekBTN = view;
-        }
-    }
-    public void FriBTN(View view){
-        if (LastWeekBTN != view){
-            ((TransitionDrawable)LastWeekBTN.getBackground()).reverseTransition(TransitionWeekButtonsTime);
-            ((TransitionDrawable)view.getBackground()).startTransition(TransitionWeekButtonsTime);
-            LastWeekBTN = view;
-        }
-    }
-    public void SatBTN(View view){
-        if (LastWeekBTN != view){
-            ((TransitionDrawable)LastWeekBTN.getBackground()).reverseTransition(TransitionWeekButtonsTime);
-            ((TransitionDrawable)view.getBackground()).startTransition(TransitionWeekButtonsTime);
-            LastWeekBTN = view;
+
+            addLesson(startOfWeek.plusDays(dayOfWeekByButton(view)).format(fServ), "" + startOfWeek.plusDays(dayOfWeekByButton(view)+1).format(fServ), ""+dayOfWeekByButton(view), ""+startOfWeek.plusDays(dayOfWeekByButton(view)).getDayOfWeek());
+
+            Schedule[] schedule = DataAccess.GetSchedule("select * from Lessons where time>='"+startOfWeek.plusDays(dayOfWeekByButton(view)).format(fServ)+"' and time<'"+startOfWeek.plusDays(dayOfWeekByButton(view) + 1).format(fServ)+"' order by time asc");
+
+            for (Schedule s : schedule) {
+                addLesson(s.Lesson, s.Teacher, s.GetLDC(fDate), s.Room);
+            }
         }
     }
 
@@ -139,9 +84,12 @@ public class MainScreen extends AppCompatActivity {
         overridePendingTransition(R.anim.anim_main_to_lc_out, R.anim.anim_main_to_lc);
     }
 
-    private void setStartDay(View view){
-        LastWeekBTN = findViewById(R.id.MonBTN);
-        ((TransitionDrawable)view.getBackground()).startTransition(0);
+    private void setStartDay(){
+        LastWeekBTN = findViewById(idByDayOfWeek() == R.id.MonBTN ? R.id.TueBTN : R.id.MonBTN);
+        ((TransitionDrawable)findViewById(R.id.MonBTN).getBackground()).startTransition(0);
+
+        startOfWeek = LocalDateTime.now().toLocalDate().atStartOfDay().with(DayOfWeek.MONDAY);
+        DayBTN(findViewById(idByDayOfWeek()));
     }
 
     private void addLesson(String strLesson, String strTeacher, String strTime, String strRoom){
@@ -169,5 +117,43 @@ public class MainScreen extends AppCompatActivity {
 
     private void deleteAllViewInScrollView(){
         ((LinearLayout)findViewById(R.id.subjectScrollLayout)).removeAllViews();
+    }
+
+    private int idByDayOfWeek() {
+        String day = String.valueOf(LocalDateTime.now().getDayOfWeek());
+        switch (day){
+            case "TUESDAY":
+                return R.id.TueBTN;
+            case "WEDNESDAY":
+                return R.id.WedBTN;
+            case "THURSDAY":
+                return R.id.ThuBTN;
+            case "FRIDAY":
+                return R.id.FriBTN;
+            case "SATURDAY":
+                return R.id.SatBTN;
+            case "MONDAY":
+            default:
+                return R.id.MonBTN;
+        }
+    }
+
+    @SuppressLint("NonConstantResourceId")
+    private int dayOfWeekByButton(View view) {
+        switch (view.getId()) {
+            case R.id.TueBTN:
+                return 1;
+            case R.id.WedBTN:
+                return 2;
+            case R.id.ThuBTN:
+                return 3;
+            case R.id.FriBTN:
+                return 4;
+            case R.id.SatBTN:
+                return 5;
+            case R.id.MonBTN:
+            default:
+                return 0;
+        }
     }
 }

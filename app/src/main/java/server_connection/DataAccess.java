@@ -5,7 +5,7 @@ import androidx.annotation.RequiresApi;
 
 import com.google.gson.Gson;
 
-@RequiresApi(api = Build.VERSION_CODES.KITKAT)
+@RequiresApi(api = Build.VERSION_CODES.O)
 public class DataAccess {
     private static Schedule[] GetSchedule(Request request) {
         String query = new Gson().toJson(request);
@@ -14,7 +14,7 @@ public class DataAccess {
     /** Gets full schedule from data base
      @return Schedule[] if successful or empty Schedule[] otherwise */
     public static Schedule[] GetSchedule() {
-        return GetSchedule(new Request("getschedule", "select * from Lessons"));
+        return GetSchedule(new Request("getschedule", "select * from Lessons order by time asc"));
     }
     /** Gets schedule from data base by query
      @return Schedule[] if successful or empty Schedule[] otherwise */
@@ -38,7 +38,7 @@ public class DataAccess {
     /** Adds Schedule to data base
      @return String 'successful' or '[]' otherwise */
     public static String AddRowToSchedule(Schedule s) {
-        Request request = new Request("addrow", "insert into Lessons (lesson,teacher,room,description,time) values ('"+s.Lesson+"','"+s.Teacher+"','"+ s.Room +"','"+s.Description+"','"+s.Time+"')");
+        Request request = new Request("addrow", "insert into Lessons (lesson,teacher,room,description,time) values (N'"+s.Lesson+"',N'"+s.Teacher+"',N'"+ s.Room +"',N'"+s.Description+"',N'"+s.Time+"')");
         String query = new Gson().toJson(request);
         return ServerConnection.Query(query);
     }
@@ -46,7 +46,7 @@ public class DataAccess {
     /** Adds Profile to data base
      @return String 'successful' or '[]' otherwise */
     public static String AddRowToProfiles(Profile p) {
-        Request request = new Request("addrow", "insert into Profiles (login,password,firstname, lastname, acctype) values ('"+p.Login+"','"+p.Password+"','"+p.FirstName+"','"+p.LastName+"','"+p.AccType+"')");
+        Request request = new Request("addrow", "insert into Profiles (login,password,firstname, lastname, acctype) values (N'"+p.Login+"',N'"+p.Password+"',N'"+p.FirstName+"',N'"+p.LastName+"',N'"+p.AccType+"')");
         String query = new Gson().toJson(request);
         return ServerConnection.Query(query);
     }
