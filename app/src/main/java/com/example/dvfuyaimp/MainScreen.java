@@ -79,6 +79,7 @@ public class MainScreen extends AppCompatActivity {
         addLesson("YAIMP", "Sush", "15:10", "D820");
         addLesson("VAISD", "Klenin", "11:50", "G464");
         addEvent("contest", "15:10", "Building A");
+        deleteAllViewInScrollView();
     }
 
     public void MonBTN(View view){
@@ -87,6 +88,7 @@ public class MainScreen extends AppCompatActivity {
             ((TransitionDrawable)view.getBackground()).startTransition(TransitionWeekButtonsTime);
             LastWeekBTN = view;
         }
+
     }
     public void TueBTN(View view){
         if (LastWeekBTN != view){
@@ -163,5 +165,9 @@ public class MainScreen extends AppCompatActivity {
         ((TextView)item.findViewById(R.id.place)).setText(strPlace);
 
         ((LinearLayout)findViewById(R.id.subjectScrollLayout)).addView(item);
+    }
+
+    private void deleteAllViewInScrollView(){
+        ((LinearLayout)findViewById(R.id.subjectScrollLayout)).removeAllViews();
     }
 }
