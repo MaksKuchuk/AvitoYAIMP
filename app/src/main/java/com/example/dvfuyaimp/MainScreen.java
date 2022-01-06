@@ -34,6 +34,7 @@ public class MainScreen extends AppCompatActivity {
     LocalDateTime startOfWeek;
     DateTimeFormatter fServ = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
     DateTimeFormatter fDate = DateTimeFormatter.ofPattern("HH:mm");
+    int flag = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,17 +48,22 @@ public class MainScreen extends AppCompatActivity {
         findViewById(R.id.FriBTN).setOnClickListener(this::DayBTN);
         findViewById(R.id.SatBTN).setOnClickListener(this::DayBTN);
 
-        findViewById(R.id.settings).setOnClickListener(this::settingBTN);
+        findViewById(R.id.settings).setOnClickListener(this::SettingBTN);
         findViewById(R.id.LC).setOnClickListener(this::LcBTN);
+
+        findViewById(R.id.PrevBTN).setOnClickListener(this::WeekBTN);
+        findViewById(R.id.NextBTN).setOnClickListener(this::WeekBTN);
 
         setStartDay();
     }
 
     public void DayBTN(View view){
-        if (LastWeekBTN != view){
-            ((TransitionDrawable)LastWeekBTN.getBackground()).reverseTransition(TransitionWeekButtonsTime);
-            ((TransitionDrawable)view.getBackground()).startTransition(TransitionWeekButtonsTime);
-            LastWeekBTN = view;
+        if (LastWeekBTN != view || flag == 1) {
+            if (flag == 0) {
+                ((TransitionDrawable) LastWeekBTN.getBackground()).reverseTransition(TransitionWeekButtonsTime);
+                ((TransitionDrawable) view.getBackground()).startTransition(TransitionWeekButtonsTime);
+                LastWeekBTN = view;
+            }
             deleteAllViewInScrollView();
 
 
@@ -71,7 +77,7 @@ public class MainScreen extends AppCompatActivity {
         }
     }
 
-    public void settingBTN(View view){
+    public void SettingBTN(View view){
         Toast.makeText(getApplicationContext(),"Settings", Toast.LENGTH_SHORT).show();
 
         startActivity(new Intent(this, Settings.class));
@@ -82,6 +88,22 @@ public class MainScreen extends AppCompatActivity {
 
         startActivity(new Intent(this, LC.class));
         overridePendingTransition(R.anim.anim_main_to_lc_out, R.anim.anim_main_to_lc);
+    }
+    public void WeekBTN(View view){
+        if (view.getId() == R.id.PrevBTN) {
+            startOfWeek = startOfWeek.minusDays(7);
+            if (LastWeekBTN.getId() == R.id.SatBTN) {
+                flag = 1;
+            }
+            DayBTN(findViewById(R.id.SatBTN));
+        } else {
+            startOfWeek = startOfWeek.plusDays(7);
+            if (LastWeekBTN.getId() == R.id.MonBTN) {
+                flag = 1;
+            }
+            DayBTN(findViewById(R.id.MonBTN));
+        }
+        flag = 0;
     }
 
     private void setStartDay(){

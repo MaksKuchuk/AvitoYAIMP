@@ -147,6 +147,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
+        <Button
+            android:id="@+id/PrevBTN"
+            android:layout_width="70dp"
+            android:layout_height="50dp"
+            android:layout_margin="10dp"
+            android:text="Prev\nWeek"
+            tools:layout_editor_absoluteX="10dp"
+            tools:layout_editor_absoluteY="610dp" />
+
         <Space
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -177,5 +186,17 @@
             android:layout_height="0dp"
             android:layout_weight="1" >
         </Space>
+
+
+        <Button
+            android:id="@+id/NextBTN"
+            android:layout_width="70dp"
+            android:layout_height="50dp"
+            android:layout_margin="10dp"
+            android:text="Next\nWeek"
+            tools:layout_editor_absoluteX="300dp"
+            tools:layout_editor_absoluteY="610dp" />
+
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
