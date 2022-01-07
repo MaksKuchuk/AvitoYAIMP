@@ -1,6 +1,9 @@
 package com.example.dvfuyaimp;
 
 import androidx.annotation.RequiresApi;
+
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.annotation.SuppressLint;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -95,22 +98,27 @@ public class MainScreen extends AppCompatActivity {
         overridePendingTransition(R.anim.anim_main_to_lc_out, R.anim.anim_main_to_lc);
     }
     public void WeekBTN(View view){
-        hideAllText();
-        if (view.getId() == R.id.PrevBTN) {
-            startOfWeek = startOfWeek.minusDays(7);
-            if (LastWeekBTN.getId() == R.id.SatBTN) {
-                flag = 1;
+        ((LinearLayout)findViewById(R.id.subjectScrollLayout)).animate().alpha(0f).setDuration(TransitionLessonTime).setListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                if (view.getId() == R.id.PrevBTN) {
+                    startOfWeek = startOfWeek.minusDays(7);
+                    if (LastWeekBTN.getId() == R.id.SatBTN) {
+                        flag = 1;
+                    }
+                    DayBTN(findViewById(R.id.SatBTN));
+                } else {
+                    startOfWeek = startOfWeek.plusDays(7);
+                    if (LastWeekBTN.getId() == R.id.MonBTN) {
+                        flag = 1;
+                    }
+                    DayBTN(findViewById(R.id.MonBTN));
+                }
+                flag = 0;
+
+                ((LinearLayout)findViewById(R.id.subjectScrollLayout)).animate().alpha(1f).setDuration(TransitionLessonTime).setListener(null);
             }
-            DayBTN(findViewById(R.id.SatBTN));
-        } else {
-            startOfWeek = startOfWeek.plusDays(7);
-            if (LastWeekBTN.getId() == R.id.MonBTN) {
-                flag = 1;
-            }
-            DayBTN(findViewById(R.id.MonBTN));
-        }
-        flag = 0;
-        showAllText();
+        });
     }
 
     private void setStartDay(){
@@ -146,20 +154,6 @@ public class MainScreen extends AppCompatActivity {
 
     private void deleteAllViewInScrollView(){
         ((LinearLayout)findViewById(R.id.subjectScrollLayout)).removeAllViews();
-    }
-
-    private void hideAllText(){
-        AlphaAnimation animation1 = new AlphaAnimation(1f, 0f);
-        animation1.setDuration(TransitionLessonTime);
-        //animation1.setFillAfter(true);
-        ((LinearLayout)findViewById(R.id.subjectScrollLayout)).startAnimation(animation1);
-    }
-
-    private void showAllText(){
-        AlphaAnimation animation1 = new AlphaAnimation(0f, 1f);
-        animation1.setDuration(TransitionLessonTime);
-        //animation1.setFillAfter(true);
-        ((LinearLayout)findViewById(R.id.subjectScrollLayout)).startAnimation(animation1);
     }
 
     private int idByDayOfWeek() {
