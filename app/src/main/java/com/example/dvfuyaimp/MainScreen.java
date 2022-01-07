@@ -12,8 +12,12 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,6 +33,7 @@ import java.time.format.DateTimeFormatter;
 public class MainScreen extends AppCompatActivity {
 
     final int TransitionWeekButtonsTime = 100;
+    final int TransitionLessonTime = 500;
 
     View LastWeekBTN;
     LocalDateTime startOfWeek;
@@ -90,6 +95,7 @@ public class MainScreen extends AppCompatActivity {
         overridePendingTransition(R.anim.anim_main_to_lc_out, R.anim.anim_main_to_lc);
     }
     public void WeekBTN(View view){
+        hideAllText();
         if (view.getId() == R.id.PrevBTN) {
             startOfWeek = startOfWeek.minusDays(7);
             if (LastWeekBTN.getId() == R.id.SatBTN) {
@@ -104,6 +110,7 @@ public class MainScreen extends AppCompatActivity {
             DayBTN(findViewById(R.id.MonBTN));
         }
         flag = 0;
+        showAllText();
     }
 
     private void setStartDay(){
@@ -139,6 +146,20 @@ public class MainScreen extends AppCompatActivity {
 
     private void deleteAllViewInScrollView(){
         ((LinearLayout)findViewById(R.id.subjectScrollLayout)).removeAllViews();
+    }
+
+    private void hideAllText(){
+        AlphaAnimation animation1 = new AlphaAnimation(1f, 0f);
+        animation1.setDuration(TransitionLessonTime);
+        //animation1.setFillAfter(true);
+        ((LinearLayout)findViewById(R.id.subjectScrollLayout)).startAnimation(animation1);
+    }
+
+    private void showAllText(){
+        AlphaAnimation animation1 = new AlphaAnimation(0f, 1f);
+        animation1.setDuration(TransitionLessonTime);
+        //animation1.setFillAfter(true);
+        ((LinearLayout)findViewById(R.id.subjectScrollLayout)).startAnimation(animation1);
     }
 
     private int idByDayOfWeek() {
