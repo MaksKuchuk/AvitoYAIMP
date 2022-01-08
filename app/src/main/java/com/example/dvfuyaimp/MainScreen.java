@@ -30,6 +30,9 @@ import server_connection.*;
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @RequiresApi(api = Build.VERSION_CODES.O)
@@ -42,6 +45,7 @@ public class MainScreen extends AppCompatActivity {
     LocalDateTime startOfWeek;
     DateTimeFormatter fServ = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
     DateTimeFormatter fDate = DateTimeFormatter.ofPattern("HH:mm");
+    List<List<Schedule>> weekSchedule = new ArrayList<>();
     int flag = 0;
 
     @Override
@@ -77,9 +81,9 @@ public class MainScreen extends AppCompatActivity {
 
             addLesson(startOfWeek.plusDays(dayOfWeekByButton(view)).format(fServ), "" + startOfWeek.plusDays(dayOfWeekByButton(view)+1).format(fServ), ""+dayOfWeekByButton(view), ""+startOfWeek.plusDays(dayOfWeekByButton(view)).getDayOfWeek());
 
-            Schedule[] schedule = DataAccess.GetSchedule("select * from Lessons where time>='"+startOfWeek.plusDays(dayOfWeekByButton(view)).format(fServ)+"' and time<'"+startOfWeek.plusDays(dayOfWeekByButton(view) + 1).format(fServ)+"' order by time asc");
+            List<Schedule> daySchedule = weekSchedule.get(dayOfWeekByButton(view));
 
-            for (Schedule s : schedule) {
+            for (Schedule s : daySchedule) {
                 addLesson(s.Lesson, s.Teacher, s.GetLDC(fDate), s.Room);
             }
         }
@@ -101,19 +105,19 @@ public class MainScreen extends AppCompatActivity {
         ((LinearLayout)findViewById(R.id.subjectScrollLayout)).animate().alpha(0f).setDuration(TransitionLessonTime).setListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {
+                int ID;
                 if (view.getId() == R.id.PrevBTN) {
-                    startOfWeek = startOfWeek.minusDays(7);
-                    if (LastWeekBTN.getId() == R.id.SatBTN) {
-                        flag = 1;
-                    }
-                    DayBTN(findViewById(R.id.SatBTN));
+                    startOfWeek = startOfWeek.minusWeeks(1);
+                    ID = R.id.SatBTN;
                 } else {
-                    startOfWeek = startOfWeek.plusDays(7);
-                    if (LastWeekBTN.getId() == R.id.MonBTN) {
-                        flag = 1;
-                    }
-                    DayBTN(findViewById(R.id.MonBTN));
+                    startOfWeek = startOfWeek.plusWeeks(1);
+                    ID = R.id.MonBTN;
                 }
+                getWeekSchedule();
+                if (LastWeekBTN.getId() == ID) {
+                    flag = 1;
+                }
+                DayBTN(findViewById(ID));
                 flag = 0;
 
                 ((LinearLayout)findViewById(R.id.subjectScrollLayout)).animate().alpha(1f).setDuration(TransitionLessonTime).setListener(null);
@@ -126,8 +130,25 @@ public class MainScreen extends AppCompatActivity {
         ((TransitionDrawable)findViewById(R.id.MonBTN).getBackground()).startTransition(0);
 
         startOfWeek = LocalDateTime.now().toLocalDate().atStartOfDay().with(DayOfWeek.MONDAY);
+        for (int i = 0; i < 7; ++i) {
+            weekSchedule.add(new ArrayList<>());
+        }
+        getWeekSchedule();
         DayBTN(findViewById(idByDayOfWeek()));
     }
+
+
+    private void getWeekSchedule() {
+        for (List<Schedule> schedules : weekSchedule) {
+            if (schedules != null)
+                schedules.clear();
+        }
+        Schedule[] querySchedule = DataAccess.GetSchedule("select * from Lessons where time>='"+startOfWeek.format(fServ)+"' and time<'"+startOfWeek.plusWeeks(1).format(fServ)+"' order by time asc");
+        for (Schedule schedules : querySchedule) {
+            weekSchedule.get((int) ChronoUnit.DAYS.between(startOfWeek, LocalDateTime.parse(schedules.Time))).add(schedules);
+        }
+    }
+
 
     private void addLesson(String strLesson, String strTeacher, String strTime, String strRoom){
         LayoutInflater ltInflater = getLayoutInflater();
