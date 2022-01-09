@@ -15,12 +15,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 
-import android.view.animation.AccelerateInterpolator;
-import android.view.animation.AlphaAnimation;
-import android.view.animation.DecelerateInterpolator;
-import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -42,6 +36,7 @@ public class MainScreen extends AppCompatActivity {
     final int TransitionLessonTime = 500;
 
     View LastWeekBTN;
+    View LastItemTeacherDescription = null;
     LocalDateTime startOfWeek;
     DateTimeFormatter fServ = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
     DateTimeFormatter fDate = DateTimeFormatter.ofPattern("HH:mm");
@@ -67,6 +62,8 @@ public class MainScreen extends AppCompatActivity {
         findViewById(R.id.NextBTN).setOnClickListener(this::WeekBTN);
 
         setStartDay();
+        addEvent("1", "bjhogifhg ighiough sdgihdgoidhg hgdioghoieyhg87h ohggh ifgohsogdfigh ghidoghoig hdsidghdfio w gh wiughfhgs oh", "15.10", "D734");
+        addEvent("dfggfsldn ndfkjgndsff", "fg hfdig ", "12.50", "B362");
     }
 
     public void DayBTN(View view){
@@ -159,18 +156,55 @@ public class MainScreen extends AppCompatActivity {
         ((TextView)item.findViewById(R.id.time)).setText(strTime);
         ((TextView)item.findViewById(R.id.room)).setText(strRoom);
 
+        item.setOnClickListener(this::openTeacherDescriptionEvent);
+
         ((LinearLayout)findViewById(R.id.subjectScrollLayout)).addView(item);
     }
 
-    private void addEvent(String strEvent, String strTimeEvent, String strPlace){
+    private void addEvent(String strEvent, String strDescription, String strTimeEvent, String strPlace){
         LayoutInflater ltInflater = getLayoutInflater();
         View item = ltInflater.inflate(R.layout.event_layout, ((LinearLayout)findViewById(R.id.subjectScrollLayout)), false);
 
         ((TextView)item.findViewById(R.id.event)).setText(strEvent);
+        ((TextView)item.findViewById(R.id.description)).setText(strDescription);
         ((TextView)item.findViewById(R.id.timeEvent)).setText(strTimeEvent);
         ((TextView)item.findViewById(R.id.place)).setText(strPlace);
 
+        item.setOnClickListener(this::openTeacherDescriptionEvent);
+
         ((LinearLayout)findViewById(R.id.subjectScrollLayout)).addView(item);
+    }
+
+    private void openTeacherDescriptionEvent(View item){
+        if (item == LastItemTeacherDescription){
+            closeItem(LastItemTeacherDescription);
+            LastItemTeacherDescription = null;
+            return;
+        }
+        if (LastItemTeacherDescription == null){
+            openItem(item);
+            LastItemTeacherDescription = item;
+        }
+        closeItem(LastItemTeacherDescription);
+        openItem(item);
+        LastItemTeacherDescription = item;
+    }
+
+    private void openItem(View item){
+        if (item.getId() == R.id.lessonWrapper){
+            item.findViewById(R.id.teacher).setVisibility(View.VISIBLE);
+            item.findViewById(R.id.lessonArrow).setVisibility(View.VISIBLE);
+        } else if (item.getId() == R.id.eventWrapper){
+            item.findViewById(R.id.description).setVisibility(View.VISIBLE);
+        }
+    }
+    private void closeItem(View item){
+        if (item.getId() == R.id.lessonWrapper){
+            item.findViewById(R.id.teacher).setVisibility(View.GONE);
+            item.findViewById(R.id.lessonArrow).setVisibility(View.GONE);
+        } else if (item.getId() == R.id.eventWrapper){
+            item.findViewById(R.id.description).setVisibility(View.GONE);
+        }
     }
 
     private void deleteAllViewInScrollView(){

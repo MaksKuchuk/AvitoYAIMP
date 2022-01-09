@@ -21,6 +21,7 @@
     <string name="place">Place</string>
     <string name="next">Next</string>
     <string name="prev">Prev</string>
+    <string name="description">Description</string>
 
 
 </resources>

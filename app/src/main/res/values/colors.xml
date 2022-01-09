@@ -22,5 +22,10 @@
     <color name="DownSelectionBGC">#af4425</color>
     <color name="DownSelectionButtonsBGC">#333d28</color>
     <color name="dayScrollBTN">#af4425</color>
+    <color name="lessonBGC">#c9a66b</color>
+    <color name="confBGC">#ebdcb2</color>
+    <color name="lessonText">#ffffff</color>
+    <color name="confText">#662e1c</color>
+
 
 </resources>
