@@ -62,8 +62,6 @@ public class MainScreen extends AppCompatActivity {
         findViewById(R.id.NextBTN).setOnClickListener(this::WeekBTN);
 
         setStartDay();
-        addEvent("1", "bjhogifhg ighiough sdgihdgoidhg hgdioghoieyhg87h ohggh ifgohsogdfigh ghidoghoig hdsidghdfio w gh wiughfhgs oh", "15.10", "D734");
-        addEvent("dfggfsldn ndfkjgndsff", "fg hfdig ", "12.50", "B362");
     }
 
     public void DayBTN(View view){
