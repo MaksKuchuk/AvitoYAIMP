@@ -112,6 +112,13 @@
             android:textColor="@color/white"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"/>
+
+        <Button
+            android:id="@+id/SunBTN"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/trans_buttons"
+            style="?android:attr/buttonBarButtonStyle"/>
     </LinearLayout>
 
     <ScrollView

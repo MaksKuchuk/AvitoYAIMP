@@ -123,15 +123,21 @@ public class MainScreen extends AppCompatActivity {
     }
 
     private void setStartDay(){
-        LastWeekBTN = findViewById(idByDayOfWeek() == R.id.MonBTN ? R.id.TueBTN : R.id.MonBTN);
+        LastWeekBTN = findViewById(R.id.SunBTN);
         ((TransitionDrawable)findViewById(R.id.MonBTN).getBackground()).startTransition(0);
 
-        startOfWeek = LocalDateTime.now().toLocalDate().atStartOfDay().with(DayOfWeek.MONDAY);
         for (int i = 0; i < 7; ++i) {
             weekSchedule.add(new ArrayList<>());
         }
+
+        startOfWeek = LocalDateTime.now().toLocalDate().atStartOfDay().with(DayOfWeek.MONDAY);
+        int ID = idByDayOfWeek();
+        if (ID == R.id.SunBTN) {
+            startOfWeek = startOfWeek.plusWeeks(1);
+            ID = R.id.MonBTN;
+        }
         getWeekSchedule();
-        DayBTN(findViewById(idByDayOfWeek()));
+        DayBTN(findViewById(ID));
     }
 
 
@@ -214,6 +220,8 @@ public class MainScreen extends AppCompatActivity {
     private int idByDayOfWeek() {
         String day = String.valueOf(LocalDateTime.now().getDayOfWeek());
         switch (day){
+            case "MONDAY":
+                return R.id.MonBTN;
             case "TUESDAY":
                 return R.id.TueBTN;
             case "WEDNESDAY":
@@ -224,15 +232,16 @@ public class MainScreen extends AppCompatActivity {
                 return R.id.FriBTN;
             case "SATURDAY":
                 return R.id.SatBTN;
-            case "MONDAY":
             default:
-                return R.id.MonBTN;
+                return R.id.SunBTN;
         }
     }
 
     @SuppressLint("NonConstantResourceId")
     private int dayOfWeekByButton(View view) {
         switch (view.getId()) {
+            case R.id.MonBTN:
+                return 0;
             case R.id.TueBTN:
                 return 1;
             case R.id.WedBTN:
@@ -243,9 +252,8 @@ public class MainScreen extends AppCompatActivity {
                 return 4;
             case R.id.SatBTN:
                 return 5;
-            case R.id.MonBTN:
             default:
-                return 0;
+                return 6;
         }
     }
 }

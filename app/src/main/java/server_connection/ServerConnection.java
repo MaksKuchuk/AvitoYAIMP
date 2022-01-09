@@ -17,36 +17,31 @@ public class ServerConnection {
     public static String Query(String query) {
         Log.d("MyApp", "Query started");
         int i = 0;
-        try (Socket socket = new Socket(host, port)){
-            OutputStream output = socket.getOutputStream();
-            InputStream input = socket.getInputStream();
-            BufferedReader reader = new BufferedReader(new InputStreamReader(input));
+        while (i < 5) {
+            try (Socket socket = new Socket(host, port)) {
+                OutputStream output = socket.getOutputStream();
+                InputStream input = socket.getInputStream();
+                BufferedReader reader = new BufferedReader(new InputStreamReader(input));
 
-            output.write(query.getBytes(StandardCharsets.UTF_8));
+                output.write(query.getBytes(StandardCharsets.UTF_8));
+                String response = reader.readLine();
 
-            char[] buf = new char[1024*1024];
-            StringBuilder response = new StringBuilder();
-            int len = 0;
-            while ((len = reader.read(buf)) > 0) {
-                response.append(buf, 0, len);
+                Log.d("MyApp", response);
+
+                if (!response.endsWith("]"))
+                    response += "]";
+
+                socket.close();
+                return response;
+            } catch (UnknownHostException e) {
+                e.printStackTrace();
+                Log.d("MyApp", i + " Server Error\n" + e.getMessage());
+            } catch (IOException e) {
+                e.printStackTrace();
+                Log.d("MyApp", i + " IO Error\n" + e.getMessage());
             }
-
-            Log.d("MyApp", response.toString());
-
-            if (!response.toString().endsWith("]"))
-                response.append("]");
-
-            socket.close();
-            return response.toString();
+            i++;
         }
-        catch (UnknownHostException e) {
-            e.printStackTrace();
-            Log.d("MyApp", i + " Server Error\n"+ e.getMessage());
-            return "[]";
-        } catch (IOException e) {
-            e.printStackTrace();
-            Log.d("MyApp", i + " IO Error\n"+ e.getMessage());
-            return "[]";
-        }
+        return "[]";
     }
 }
