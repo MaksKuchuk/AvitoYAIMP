@@ -154,18 +154,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <Space
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_weight="0.5" >
-        </Space>
-
         <Button
             android:id="@+id/PrevBTN"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            style="?android:attr/borderlessButtonStyle"
-            android:text="@string/prev" />
+            android:background="@drawable/ic_backwards_buttonleft"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            style="?android:attr/borderlessButtonStyle" />
 
         <Space
             android:layout_width="0dp"
@@ -199,16 +193,10 @@
 
         <Button
             android:id="@+id/NextBTN"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            style="?android:attr/borderlessButtonStyle"
-            android:text="@string/next" />
-
-        <Space
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_weight="0.5" >
-        </Space>
+            android:background="@drawable/ic_backwards_buttonright"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            style="?android:attr/borderlessButtonStyle" />
 
     </LinearLayout>
 

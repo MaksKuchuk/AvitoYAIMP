@@ -8,86 +8,28 @@
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/enterButton"
-        style="?android:attr/borderlessButtonStyle"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="40dp"
-        android:background="@drawable/button_arrow"
-        android:textStyle="normal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/PasswordEdit" />
-
-    <CheckBox
-        android:id="@+id/password_rem"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:minHeight="48dp"
-        android:text="@string/rememberPassword"
-        android:textColor="@color/black"
-        android:theme="@style/MyCheckBox"
-        app:layout_constraintEnd_toStartOf="@+id/enterButton"
-        app:layout_constraintHorizontal_bias="0.281"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/PasswordEdit" />
-
-    <EditText
-        android:id="@+id/EmailEdit"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginStart="40dp"
+        android:id="@+id/schedule"
+        android:layout_width="200dp"
+        android:layout_height="80dp"
         android:layout_marginTop="100dp"
-        android:layout_marginEnd="40dp"
+        android:text="@string/schedule"
         android:background="@drawable/edit_text"
-        android:gravity="center"
-        android:hint="@string/hintLogin"
-        android:inputType="textEmailAddress"
-        android:textColor="@color/textPassEmailEdit"
-        android:textColorHint="@color/textHintPassEmailEdit"
-        android:textSize="20sp"
-
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:autofillHints="Login"/>
-
-    <EditText
-        android:id="@+id/PasswordEdit"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="40dp"
-        android:autofillHints="Password"
-        android:background="@drawable/edit_text"
-        android:gravity="center"
-        android:hint="@string/hintPassword"
-        android:inputType="textPassword"
-        android:textColor="@color/textPassEmailEdit"
-        android:textColorHint="@color/textHintPassEmailEdit"
-
+        android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/EmailEdit" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/restorePasswordButton"
-        style="?android:attr/borderlessButtonStyle"
-        android:layout_width="144dp"
-        android:layout_height="26dp"
-        android:layout_gravity="center"
-        android:background="#00000000"
-        android:text="@string/restorePasswordButton"
+        android:id="@+id/visit"
+        android:layout_width="200dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="50dp"
+        android:text="@string/visit"
+        android:background="@drawable/edit_text"
         android:textColor="@color/black"
-        android:textSize="12sp"
-        android:textStyle="normal"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.104"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/PasswordEdit" />
-
-
+        app:layout_constraintTop_toBottomOf="@id/schedule" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -13,8 +13,6 @@
     <color name="passEmailEdit">#ebdcb2</color>
     <color name="textPassEmailEdit">#b6b0d1</color>
     <color name="textHintPassEmailEdit">#7f76a8</color>
-    <color name="infoTextDownBGC">#202024</color>
-    <color name="infoTextColor">#817d91</color>
     <color name="enterButtonBGC">#388c5b</color>
     <color name="restorePasswordButtonBGC">#962092</color>
     <color name="dayScrollBGC">#662e1c</color>

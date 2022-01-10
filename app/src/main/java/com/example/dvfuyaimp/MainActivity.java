@@ -12,8 +12,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-    CheckBox remember;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,59 +21,19 @@ public class MainActivity extends AppCompatActivity {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
-        remember = (CheckBox)findViewById(R.id.password_rem);
-
-        findViewById(R.id.enterButton).setOnClickListener(this::enterBTN);
-        findViewById(R.id.restorePasswordButton).setOnClickListener(this::restorePasswordBTN);
-        remember.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
-
+        findViewById(R.id.schedule).setOnClickListener(this::toSchedule);
+        findViewById(R.id.visit).setOnClickListener(this::toVisit);
     }
 
-    private long hash(String pass){
-        long left = 4633;
-        long right = 3427;
-        long res = 460193893;
-        int len = pass.length();
-
-        for (int i = 0; i < len; i++) {
-            if (i % 2 == 0){ left *= pass.charAt(i); } else { right *= pass.charAt(i); }
-            res *= (left * right) + 3583;
-        }
-        for (int i = 0; i < len; i += 3) {
-            if (i % 2 == 1){ left ^= pass.charAt(i); } else { right *= pass.charAt(i); }
-            res *= (left ^ right) + 2909;
-        }
-        for (int i = 1; i < len; i++) {
-            if (i % 2 == 1){ left *= pass.charAt(i); } else { right /= pass.charAt(i); }
-            res ^= (left * right) + 1229;
-        }
-        for (int i = 0; i < len; i += 3) {
-            if (i % 2 == 0){ left ^= pass.charAt(i); } else { right *= pass.charAt(i); }
-            res *= (left ^ right) + 5477;
-        }
-        for (int i = 1; i < len; i++) {
-            if (i % 2 == 0){ left /= pass.charAt(i); } else { right *= pass.charAt(i); }
-            res ^= (left * right) + 2383;
-        }
-
-        return res;
-    }
-
-    public void enterBTN(View view){
-        String pass = ((EditText)findViewById(R.id.PasswordEdit)).getText().toString().trim();
-        String login = ((EditText)findViewById(R.id.EmailEdit)).getText().toString().trim();
-
-        Toast.makeText(getApplicationContext(), Long.toString(hash(pass)), Toast.LENGTH_SHORT).show();
+    private void toSchedule(View view){
         startActivity(new Intent(this, MainScreen.class));
     }
 
-    public void restorePasswordBTN(View view){
-        Toast.makeText(getApplicationContext(), "Restore password", Toast.LENGTH_SHORT).show();
+    private void toVisit(View view){
+        startActivity(new Intent(this, Visit.class));
     }
+
+
+
 
 }
