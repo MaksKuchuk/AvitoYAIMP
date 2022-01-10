@@ -42,6 +42,7 @@ public class MainScreen extends AppCompatActivity {
     DateTimeFormatter fDate = DateTimeFormatter.ofPattern("HH:mm");
     List<List<Schedule>> weekSchedule = new ArrayList<>();
     int flag = 0;
+    String weekDates = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,9 +73,6 @@ public class MainScreen extends AppCompatActivity {
                 LastWeekBTN = view;
             }
             deleteAllViewInScrollView();
-
-
-            addLesson(startOfWeek.plusDays(dayOfWeekByButton(view)).format(fServ), "" + startOfWeek.plusDays(dayOfWeekByButton(view)+1).format(fServ), ""+dayOfWeekByButton(view), ""+startOfWeek.plusDays(dayOfWeekByButton(view)).getDayOfWeek());
 
             List<Schedule> daySchedule = weekSchedule.get(dayOfWeekByButton(view));
 
@@ -112,6 +110,9 @@ public class MainScreen extends AppCompatActivity {
                 if (LastWeekBTN.getId() == ID) {
                     flag = 1;
                 }
+                weekDates = startOfWeek.format(DateTimeFormatter.ofPattern("dd-MM")) + " — " + startOfWeek.plusDays(6).format(DateTimeFormatter.ofPattern("dd-MM"));
+                // после этого можно обновлять дату
+
                 DayBTN(findViewById(ID));
                 flag = 0;
 
@@ -134,6 +135,7 @@ public class MainScreen extends AppCompatActivity {
             startOfWeek = startOfWeek.plusWeeks(1);
             ID = R.id.MonBTN;
         }
+        weekDates = startOfWeek.format(DateTimeFormatter.ofPattern("dd-MM")) + " — " + startOfWeek.plusDays(6).format(DateTimeFormatter.ofPattern("dd-MM"));
         getWeekSchedule();
         DayBTN(findViewById(ID));
     }
