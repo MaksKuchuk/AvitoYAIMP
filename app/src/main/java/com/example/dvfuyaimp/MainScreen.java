@@ -123,7 +123,6 @@ public class MainScreen extends AppCompatActivity {
 
     private void setStartDay(){
         LastWeekBTN = findViewById(R.id.SunBTN);
-        ((TransitionDrawable)findViewById(R.id.MonBTN).getBackground()).startTransition(0);
 
         for (int i = 0; i < 7; ++i) {
             weekSchedule.add(new ArrayList<>());
