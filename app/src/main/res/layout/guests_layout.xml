@@ -9,24 +9,13 @@
 
 
     <TextView
-        android:id="@+id/dayMonth"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="15:01:2022"
-        android:textColor="@color/black"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:textSize="20sp"/>
-
-    <TextView
         android:id="@+id/nameLastName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Name Lastname"
         android:textColor="@color/black"
         android:textSize="20sp"
-        app:layout_constraintEnd_toStartOf="@id/timeIn"
-        app:layout_constraintStart_toEndOf="@id/dayMonth"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView

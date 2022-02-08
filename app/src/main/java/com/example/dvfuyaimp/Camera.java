@@ -48,7 +48,12 @@ public class Camera extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(Camera.this, result.getText(), Toast.LENGTH_LONG).show();
+                            //Toast.makeText(Camera.this, result.getText(), Toast.LENGTH_LONG).show();
+
+                            Intent intent = new Intent();
+                            intent.putExtra("nameBuildingRoom", result.getText());
+                            setResult(RESULT_OK, intent);
+                            finish();
                         }
                     });
                 }

@@ -54,7 +54,8 @@
             android:background="@drawable/edit_text"
             android:text="@string/create_qr_code"
             android:textColor="@color/black"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:visibility="invisible"/>
 
         <Space
             android:layout_width="0dp"
@@ -106,40 +107,6 @@
             android:orientation="vertical" />
     </ScrollView>
 
-
-    <LinearLayout
-        android:id="@+id/QRBTNlayout"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="@id/scrollLayoutGuests"
-        app:layout_constraintEnd_toEndOf="@id/scrollLayoutGuests"
-        app:layout_constraintStart_toStartOf="@id/scrollLayoutGuests"
-        app:layout_constraintTop_toTopOf="@id/scrollLayoutGuests"
-        android:gravity="center_horizontal"
-        android:visibility="gone">
-
-        <ImageView
-            android:id="@+id/QRCode"
-            android:layout_width="350dp"
-            android:layout_height="300dp" />
-
-        <Space
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_weight="1"/>
-
-        <Button
-            android:id="@+id/closeQR"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:background="@drawable/cross_icon"/>
-
-        <Space
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_weight="1"/>
-    </LinearLayout>
 
     <View
         android:id="@+id/vectorLineDown2"
