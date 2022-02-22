@@ -8,17 +8,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.common.BitMatrix;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
 
-import org.jetbrains.annotations.NotNull;
-
 public class Guest extends AppCompatActivity {
-    int bracketsUP1 = 5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,50 +23,12 @@ public class Guest extends AppCompatActivity {
 
         findViewById(R.id.cameraGuest).setOnClickListener(this::openCamera);
 
-        String name = "Ivan Ivanov", building = "7.4", room = "1234";
+        String name = "Maksim Kuchuk", building = "8.2", room = "467";
         makeGuest(name, building, room);
     }
 
-    private void sendRequestToBdToLeave(String requestCode){
-
-    }
-
-    private boolean isSuccess(){
-        //BD returns an answer success or fail
-        return true;
-    }
-
-    private void openCamera(View view) {
-        startActivityForResult(new Intent(this, Camera.class), 1);
-    }
-
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (data == null) {
-            return;
-        }
-
-        String nameBuildingRoom = data.getStringExtra("nameBuildingRoom");
-        nameBuildingRoom = decryptRequestCode(nameBuildingRoom);
-
-        boolean isRight = true;
-        for (int i = 0; i < bracketsUP1; i++)
-            if (nameBuildingRoom.charAt(i) != '!') {
-                isRight = false;
-                break;
-            }
-        for (int i = nameBuildingRoom.length() - 1; i >= nameBuildingRoom.length() - bracketsUP1; i--)
-            if (nameBuildingRoom.charAt(i) != '!') {
-                isRight = false;
-                break;
-            }
-
-        if (isRight){
-            sendRequestToBdToLeave(nameBuildingRoom);
-        } else {
-            Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();
-        }
-
+    private void openCamera(View view){
+        startActivity(new Intent(this, Camera.class));
     }
 
     private void createQRcode(String strQR){
@@ -113,36 +71,7 @@ public class Guest extends AppCompatActivity {
         return str.toString();
     }
 
-    @NotNull
-    private String decryptQR(String s) {
-        StringBuilder str = new StringBuilder(s);
 
-        for (int i = 0; i < str.length(); ++i) {
-            if (i % 2 == 0 && str.length() % 2 == 0 || i % 2 != 0 && str.length() % 2 != 0) {
-                str.delete(i, i + 1);
-            }
-        }
 
-        for (int i = 0; i < str.length(); ++i) {
-            int t = str.charAt(i) ^ 33;
-            char buf = (char)t;
-            str.setCharAt(i, buf);
-        }
 
-        return str.toString();
-    }
-
-    @NotNull
-    private String decryptRequestCode(String requestCode) {
-        requestCode = decryptQR(requestCode);
-        StringBuilder temp = new StringBuilder();
-
-        for (int i = 0; i < requestCode.length(); i++){
-            if (i >= bracketsUP1 && i < requestCode.length() - bracketsUP1){
-                temp.append(requestCode.charAt(i));
-            }
-        }
-
-        return temp.toString();
-    }
 }

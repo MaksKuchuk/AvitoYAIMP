@@ -20,7 +20,6 @@ import java.util.List;
 public class Host extends AppCompatActivity {
 
     List<String> allGuest = new ArrayList<>();
-    int bracketsUP1 = 5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,17 +29,12 @@ public class Host extends AppCompatActivity {
         findViewById(R.id.cameraHost).setOnClickListener(this::openCamera);
     }
 
-    private void sendRequestToInviteGuest(String requestCode){
-        sendToDB(decryptRequestCode(requestCode));
+    private void sendRequestToInviteGuest(){
+
     }
 
-    private void sendToDB(String requestCode){
+    private void sendToDB(){
         //Send List<String> allGuest
-    }
-
-    private boolean isSuccess(){
-        //BD returns an answer success or fail
-        return true;
     }
 
     private void updateAllGuest(){
@@ -66,6 +60,7 @@ public class Host extends AppCompatActivity {
     }
 
     private void appGuestByStr(String nameBuildingRoom){
+        nameBuildingRoom = decryptQR(nameBuildingRoom);
 
         allGuest.add(nameBuildingRoom);
 
@@ -83,7 +78,7 @@ public class Host extends AppCompatActivity {
         if (c == 3){
             appGuest(tName.toString(), tBuilding.toString(), tRoom.toString());
         } else {
-            Toast.makeText(this, "Invalid QR-code", Toast.LENGTH_SHORT).show();
+            sendRequestToInviteGuest();
         }
     }
 
@@ -98,26 +93,7 @@ public class Host extends AppCompatActivity {
         }
 
         String nameBuildingRoom = data.getStringExtra("nameBuildingRoom");
-        nameBuildingRoom = decryptQR(nameBuildingRoom);
-
-        boolean isGuest = false;
-        for (int i = 0; i < bracketsUP1; i++)
-            if (nameBuildingRoom.charAt(i) != '!') {
-                isGuest = true;
-                break;
-            }
-        for (int i = nameBuildingRoom.length() - 1; i >= nameBuildingRoom.length() - bracketsUP1; i--)
-            if (nameBuildingRoom.charAt(i) != '!') {
-                isGuest = true;
-                break;
-            }
-
-        if (isGuest) {
-            appGuestByStr(nameBuildingRoom);
-        } else {
-            sendRequestToInviteGuest(nameBuildingRoom);
-        }
-
+        appGuestByStr(nameBuildingRoom);
     }
 
     @NotNull
@@ -137,20 +113,6 @@ public class Host extends AppCompatActivity {
         }
 
         return str.toString();
-    }
-
-    @NotNull
-    private String decryptRequestCode(String requestCode) {
-        requestCode = decryptQR(requestCode);
-        StringBuilder temp = new StringBuilder();
-
-        for (int i = 0; i < requestCode.length(); i++){
-            if (i >= bracketsUP1 && i < requestCode.length() - bracketsUP1){
-                temp.append(requestCode.charAt(i));
-            }
-        }
-
-        return temp.toString();
     }
 
 }
